@@ -10,7 +10,7 @@ int recur(int i) {
     int j = i;
 
     /* TODO 1: Fix this so it prints the address of j */
-    printf("recur call %d: stack@ %p\n", i, j);
+    printf("recur call %d: stack@ %p\n", i, &j);
 
     if (i > 0) {
         return recur(i - 1);
@@ -30,18 +30,20 @@ int main(int argc, char *argv[]) {
     char *buf1 = malloc(100);
     /* ... and some more stuff */
     char *buf2 = malloc(100);
+    char *buf3 = malloc(100);
 
     printf("_main  @ %p\n", main);
     printf("recur @ %p\n", recur);
 
     /* TODO 2: Fix to get address of the stack variable */
-    printf("_main stack: %p\n", i);
+    printf("_main stack: %p similar other: %p\n", &argc, &i);
 
     /* TODO 3: Fix to get address of a static variable */
-    printf("static data: %p\n", stuff);
+    printf("static data: %p similar other: %p\n", &stuff, &foo);
 
     printf("Heap: malloc 1: %p\n", buf1);
     printf("Heap: malloc 2: %p\n", buf2);
+    printf("Heap: malloc 3: %p\n", buf3);
     recur(3);
     return 0;
 }
